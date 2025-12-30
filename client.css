@@ -1,0 +1,25 @@
+/* Corrección de centrado */
+.hero {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+/* Ajuste de CTA */
+.hero .cta-button {
+  font-size: 1.1rem;
+  padding: 1rem 2.2rem;
+}
+
+/* Imagen desalineada */
+.section-image img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.eli-img{
+    align-items: center;       /* 👈 centra verticalmente imagen y texto */
+    margin: 0 auto;            /* 👈 centra el bloque completo */
+
+
+}
