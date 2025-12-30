@@ -78,6 +78,20 @@ button:focus-visible, .btn:focus-visible {
   box-shadow: none;
 }
 
+button:hover,
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 26px rgba(79, 172, 140, 0.18);
+  filter: brightness(1.05);
+}
+
+.btn-outline:hover {
+  background: linear-gradient(90deg, var(--color-cta), var(--color-accent));
+  color: #fff;
+  box-shadow: 0 6px 26px rgba(79, 172, 140, 0.18);
+  transform: translateY(-1px);
+}
+
 .wrapper {
   width: 100%;
   max-width: var(--max-width);
