@@ -552,77 +552,97 @@ button:hover,
   font-size: 0.96em;
 }
 
+@media (max-width: 1024px) {
 
-@media (max-width: 768px) {
-  .eli-section {
-    flex-direction: column;
-    text-align: center;
-    padding: var(--gap-lg);
-  }
-
-  .eli-text {
-    max-width: 100%;
-  }
-}
-
-
-@media (max-width: 1050px) {
   .hero {
     grid-template-columns: 1fr;
     gap: var(--gap-lg);
     text-align: left;
   }
+
   .hero-img {
-    max-width: 450px;
+    max-width: 420px;
     margin: 0 auto;
-    min-height: 240px;
   }
-  .treatments-grid {
-    grid-template-columns: 1fr 1fr;
-  }
+
+  .treatments-grid,
   .gallery-grid {
     grid-template-columns: 1fr 1fr;
   }
+
   .proceso-steps {
-    grid-template-columns: 2fr 2fr;
+    grid-template-columns: 1fr 1fr;
     gap: var(--gap-lg);
   }
+
   .location-section {
     flex-direction: column;
     gap: var(--gap-lg);
   }
+
   .location-map {
     max-width: 100%;
   }
 }
+@media (max-width: 768px) {
 
+  .wrapper {
+    padding: 0 6vw;
+  }
 
+  .hero {
+    padding: var(--gap-lg) 0;
+    text-align: center;
+  }
 
+  .section {
+    padding: var(--gap-lg) 0;
+  }
 
-
-
-@media (max-width: 750px) {
-  .wrapper { padding: 0 7vw; }
-  .hero { padding: var(--gap-lg) 0 var(--gap-md) 0; }
-  .section { padding: var(--gap-lg) 0; }
   .treatments-grid,
   .gallery-grid,
   .proceso-steps {
     grid-template-columns: 1fr;
     gap: var(--gap-md);
   }
-  .eli-section { flex-direction: column; gap: var(--gap-lg); text-align: left; }
-  .eli-img { margin: 0 auto; }
-}
 
-@media (max-width: 570px) {
-  .wrapper { padding: 0 3vw; }
+  .eli-section {
+    flex-direction: column;
+    gap: var(--gap-lg);
+    text-align: center;
+  }
+
+  .eli-text {
+    max-width: 100%;
+  }
+
+  .eli-img {
+    margin: 0 auto;
+  }
+}
+@media (max-width: 480px) {
+
+  .wrapper {
+    padding: 0 4vw;
+  }
+
   .nav-content {
     flex-direction: column;
-    gap: var(--gap-sm);
     align-items: flex-start;
+    gap: var(--gap-sm);
   }
-  .gallery-img { height: 120px; }
+
+  .gallery-img {
+    height: 110px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
 }
 
 /* Scrollbar minimal para mayores */
