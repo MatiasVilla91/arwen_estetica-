@@ -1,0 +1,973 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600&display=swap');
+
+:root {
+  /* =======================
+     COLORES
+     ======================= */
+  --color-bg: #ffffff;
+  --color-primary: #F9E6EF;     /* Rosa suave */
+  --color-secondary: #E2F3E8;   /* Verde suave */
+  --color-accent: #db4b81;      /* Rosa acento */
+  --color-cta: #4FAC8C;         /* Verde CTA */
+  --color-text: #232323;
+  --color-text-alt: #467155;
+  --color-footer: #FAFAFA;
+  --color-border: #F2F2F2;
+
+  /* =======================
+     SOMBRAS Y RADIOS
+     ======================= */
+  --shadow-premium: 0 6px 28px rgba(40, 34, 54, 0.09);
+  --radius-lg: 24px;
+  --radius-md: 12px;
+
+  /* =======================
+     LAYOUT
+     ======================= */
+  --max-width: 1200px;
+
+  /* Espaciado fluido (solo donde importa) */
+  --gap-xl: clamp(40px, 6vw, 56px);
+  --gap-lg: clamp(28px, 4vw, 36px);
+  --gap-md: 24px;
+  --gap-sm: 16px;
+
+  /* =======================
+     TIPOGRAFÍA FLUIDA
+     ======================= */
+  --fs-h1: clamp(1.9rem, 4.5vw, 3rem);
+  --fs-h2: clamp(1.4rem, 3vw, 2.1rem);
+  --fs-h3: clamp(1.2rem, 2.2vw, 1.6rem);
+  --fs-body: clamp(1rem, 1.1vw, 1.1rem);
+}
+
+/*BASE TIPOGRAFICA */
+html {
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'Inter', Arial, sans-serif;
+  line-height: 1.7;
+}
+
+
+/* HEADERS Y TEXTOS */
+h1 {
+  font-size: var(--fs-h1);
+  line-height: 1.15;
+  margin: 0 0 var(--gap-md);
+}
+
+h2 {
+  font-size: var(--fs-h2);
+  line-height: 1.25;
+  margin: 0 0 var(--gap-sm);
+}
+
+h3 {
+  font-size: var(--fs-h3);
+  margin: 0 0 var(--gap-sm);
+}
+
+p,
+li {
+  font-size: var(--fs-body);
+  line-height: 1.65;
+  margin: 0 0 var(--gap-sm);
+}
+
+/* IMAGENES */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* BOTONES */
+button,
+.btn {
+  font-family: inherit;
+  border: none;
+  outline: none;
+  padding: 0.9em 2.2em;
+  min-height: 44px; /* estándar táctil */
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--color-cta), var(--color-accent));
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  box-shadow: 0 2px 18px rgba(79, 172, 140, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover,
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 10px 32px rgba(40, 34, 54, 0.28),
+    0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+button:focus-visible,
+.btn:focus-visible {
+  outline: 3px solid var(--color-accent);
+}
+
+.btn-outline {
+  background: #fff;
+  color: var(--color-accent);
+  border: 2px solid var(--color-accent);
+  box-shadow: none;
+}
+
+
+.wrapper {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--gap-md);
+}
+
+
+/* Navbar */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(9px);
+  width: 100%;
+  box-shadow: 0 2px 17px rgba(90,60,80,0.06);
+}
+.nav-content {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--gap-sm) var(--gap-md);
+}
+.brand {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 1.5em;
+  letter-spacing: 0.01em;
+  color: var(--color-accent);
+}
+.nav-menu {
+  display: flex;
+  gap: var(--gap-md);
+}
+.nav-menu a {
+  font-weight: 500;
+  font-size: 1em;
+  color: var(--color-text-alt);
+  padding: 0.35em 0.9em;
+  border-radius: 999px;
+  opacity: 0.92;
+  transition: background 0.2s;
+}
+.nav-menu a.active,
+.nav-menu a:hover {
+  background: var(--color-primary);
+  color: var(--color-accent);
+}
+.nav-cta {
+  margin-left: var(--gap-md);
+}
+
+/* Hero */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;        /* 👈 CLAVE */
+  gap: var(--gap-xl);
+  align-items: center;
+  padding: var(--gap-xl) 0 var(--gap-md) 0;
+}
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-md);
+  justify-content: center;
+
+}
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.1em;
+  font-weight: 600;
+  color: var(--color-text-alt);
+  line-height: 1.17;
+  max-width: 650px;
+}
+.hero-sub {
+  font-size: 1.13em;
+  color: var(--color-text);
+  font-weight: 400;
+  margin-bottom: var(--gap-md);
+  max-width: 500px;
+}
+.hero-img {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-premium);
+  object-fit: cover;
+  width: 100%;
+  height: 100%;                /* 👈 CLAVE */
+
+  min-height: 340px;
+}
+.hero-below {
+  margin: var(--gap-lg) auto 0 auto;   /* 👈 centra horizontalmente */
+  background: var(--color-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--gap-md);
+  font-size: 1.04em;
+  color: #73364d;
+  max-width: 100% ;
+  box-shadow: 0 4px 20px rgba(241,180,201,0.11);
+}
+
+/* Tratamientos - Servicios */
+.section {
+  padding: var(--gap-xl) 0;
+  width: 100%;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5em;
+  font-weight: 600;
+  color: var(--color-accent);
+  margin-bottom: var(--gap-lg);
+  text-align: left;
+}
+
+.treatments-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap-lg);
+}
+
+.card {
+  background: #fff;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-premium);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+  transition: box-shadow .18s;
+  min-height: 365px;
+}
+.card:hover {
+  box-shadow: 0 10px 35px rgba(180,71,130,0.12);
+}
+.card-img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+
+}
+.card-body {
+  padding: var(--gap-md);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65em;
+}
+.card-title {
+  font-weight: 600;
+  font-size: 1.13em;
+  color: var(--color-text-alt);
+  margin-top: 0.2em;
+}
+.card-benefit {
+  color: var(--color-accent);
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 38px rgba(40, 34, 54, 0.12);
+}
+
+
+/* Quién es Eli */
+.eli-section {
+  background: var(--color-secondary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-premium);
+
+  max-width: 1200px;              /* 👈 centra el bloque visual */
+  margin: var(--gap-xl) auto;     /* 👈 centrado real */
+
+  padding: var(--gap-xl);         /* 👈 padding horizontal y vertical */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;        /* 👈 equilibrio visual */
+  gap: var(--gap-xl);
+}
+
+.eli-img {
+  width: 175px;
+  height: 175px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 5px 18px rgba(120,190,169,0.13);
+  border: 4px solid #fff;
+  flex-shrink: 0;                 /* 👈 importante */
+}
+
+.eli-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.eli-name {
+  font-family: 'Inter',sans-serif;
+  color: #467155;
+  font-size: 1.15em;
+  font-weight: 600;
+  margin-bottom: 0.4em;
+}
+.eli-text {
+  font-size: 1.05em;
+  line-height: 1.6;
+  color: #314732;
+  max-width: 600px;
+}
+
+/* Testimonios */
+/* Testimonios */
+.testimonials-section {
+  padding: calc(var(--gap-xl) * 1.3) 0;
+  background: linear-gradient(180deg, #fbe9f0 0%, #ffffff 100%);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-premium);
+  margin-bottom: var(--gap-xl);
+    padding-left: 70px; 
+}
+
+.testimonials-title {
+  font-family: 'Playfair Display', serif;
+  color: var(--color-accent);
+  font-size: 1.25em;
+  margin-bottom: var(--gap-lg);
+  
+}
+
+/* Carrusel */
+.testimonials-carousel {
+  display: flex;
+  gap: var(--gap-lg);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 4px 2px var(--gap-md);
+  padding-bottom: var(--gap-md);
+
+  
+}
+
+.testimonials-carousel::-webkit-scrollbar {
+  height: 6px;
+}
+
+.testimonials-carousel::-webkit-scrollbar-thumb {
+  background: rgba(219, 75, 129, 0.25);
+  border-radius: 6px;
+}
+
+/* Card */
+.testimonial {
+  flex: 0 0 320px;
+  background: #fff;
+  border-radius: var(--radius-md);
+  padding: calc(var(--gap-md) * 1.1);
+  box-shadow: 0 10px 30px rgba(40, 34, 54, 0.08);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1em;
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  
+  
+}
+
+.testimonial:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 38px rgba(40, 34, 54, 0.12);
+}
+
+/* Comillas */
+.testimonial::before {
+  content: "“";
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-family: 'Playfair Display', serif;
+  font-size: 3.2em;
+  color: rgba(219, 75, 129, 0.15);
+  line-height: 1;
+}
+
+/* Texto */
+.testimonial-text {
+  color: #312433;
+  font-size: 1.03em;
+  line-height: 1.55;
+}
+
+/* Autor */
+.testimonial-name {
+  font-weight: 600;
+  color: var(--color-accent);
+  font-size: 0.96em;
+}
+
+.testimonial-age {
+  font-size: 0.88em;
+  color: #8a7a8c;
+}
+
+
+/* Proceso */
+.proceso-section {
+  padding: var(--gap-xl) 0;
+}
+.proceso-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap-lg);
+}
+.proceso-step {
+  background: var(--color-secondary);
+  border-radius: var(--radius-md);
+  padding: var(--gap-md);
+  box-shadow: var(--shadow-premium);
+  font-size: 1.04em;
+  color: var(--color-text-alt);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.7em;
+}
+.proceso-number {
+  font-weight: 600;
+  background: var(--color-accent);
+  color: #fff;
+  border-radius: 999px;
+  font-size: 1em;
+  padding: 0.18em 0.85em;
+}
+.proceso-title {
+  font-weight: 600;
+  font-size: 1.06em;
+}
+.proceso-desc {
+  color: #5d7c67;
+  font-size: 0.98em;
+}
+
+.proceso-step:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 38px rgba(40, 34, 54, 0.12);
+}
+
+
+/* Galería */
+.gallery-section {
+  padding: var(--gap-xl) 0 var(--gap-lg) 0;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gap-md);
+}
+
+.gallery-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;        /* 👈 CUADRADO REAL */
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 3px 10px rgba(116,163,140,0.12);
+}
+
+/* Como llegar */
+.location-section {
+  padding: var(--gap-xl) 0 var(--gap-md) 0;
+  display: flex;
+  gap: var(--gap-xl);
+  flex-wrap: wrap;
+  align-items: center;
+}
+.location-details {
+  flex: 1.5;
+}
+.location-title {
+  font-family: 'Playfair Display',serif;
+  font-size: 1.26em;
+  color: var(--color-accent);
+  margin-bottom: 0.4em;
+}
+.location-address {
+  color: #142d19;
+  font-size: 1.05em;
+  margin-bottom: var(--gap-sm);
+}
+.location-note {
+  font-size: 1em;
+  margin: var(--gap-sm) 0;
+  color: #5d7c67;
+}
+.location-cta {
+  margin-top: var(--gap-md);
+}
+.location-map {
+  flex: 2;
+  min-width: 260px;
+  max-width: 460px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 4px 22px rgba(145,180,156,0.13);
+}
+
+/* Footer */
+.footer {
+  background: var(--color-footer);
+  border-top: 2px solid var(--color-border);
+  padding: var(--gap-lg) 0 var(--gap-sm) 0;
+  text-align: center;
+  color: #999;
+  font-size: 0.99em;
+  letter-spacing: 0.01em;
+}
+.footer-brand {
+  font-family: 'Playfair Display',serif;
+  color: var(--color-accent);
+  font-weight: 600;
+  font-size: 1.15em;
+  display: block;
+  margin-bottom: 0.4em;
+}
+.footer-menu {
+  margin-bottom: var(--gap-sm);
+  display: flex;
+  gap: var(--gap-md);
+  justify-content: center;
+}
+.footer-menu a {
+  color: #9e54a2;
+  opacity: 0.84;
+}
+.footer-copy {
+  color: #777;
+  margin-top: 0.4em;
+  font-size: 0.96em;
+}
+
+@media (max-width: 1024px) {
+
+  .hero {
+    grid-template-columns: 1fr;
+    gap: var(--gap-lg);
+    text-align: left;
+  }
+
+  .hero-img {
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .treatments-grid,
+  .gallery-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .proceso-steps {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap-lg);
+  }
+
+  .location-section {
+    flex-direction: column;
+    gap: var(--gap-lg);
+  }
+
+  .location-map {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-md);
+  padding-top: 0;
+}
+
+
+  /* Wrapper: usar ancho real */
+  .wrapper {
+    max-width: none;
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+
+  /* Navbar */
+  .nav-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--gap-sm);
+  }
+
+  .nav-menu {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-cta {
+    margin: 0;
+  }
+
+
+  .hero-content {
+    align-items: center;
+  }
+
+  .hero-title,
+  .hero-sub {
+    max-width: 100%;
+  }
+
+  /* Imagen protagonista */
+  .hero-img {
+    width: 100%;
+    height: 280px;
+    max-width: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  /* Grids → columna natural */
+  .treatments-grid,
+  .proceso-steps,
+  .gallery-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-lg);
+  }
+
+  /* Cards */
+  .card {
+    min-height: auto;
+  }
+
+  .card-img {
+    height: 200px;
+  }
+
+  /* Eli */
+  .eli-section {
+    padding: var(--gap-lg);
+    margin: var(--gap-lg) auto;
+    text-align: center;
+  }
+
+  .eli-text {
+    max-width: 100%;
+    font-size: 1.05em;
+  }
+
+  /* Testimonios */
+  .testimonials-section {
+    padding-left: 0;
+  }
+
+  .testimonial {
+    flex: 0 0 85%;
+  }
+
+  /* Location */
+  .location-section {
+    flex-direction: column;
+    gap: var(--gap-lg);
+  }
+
+  .location-map {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+
+
+@media (max-width: 480px) {
+
+  .wrapper {
+    padding-left: 4vw;
+    padding-right: 4vw;
+  }
+
+  .gallery-img {
+    height: 110px;
+  }
+}
+
+
+/* Scrollbar minimal para mayores */
+body, .testimonials-carousel {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-accent) #f7f2f5;
+}
+::-webkit-scrollbar {
+  height: 7px;
+  width: 7px;
+  background: #f7f2f5;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  border-radius: 8px;
+}
+</style>
+
+<link rel="stylesheet" href="/overrides/client.css">
+<script src="/overrides/content.js"></script>
+
+
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-content wrapper">
+    <span class="brand">Arwen Belleza</span>
+    <nav class="nav-menu" aria-label="Menú principal">
+      <a href="#inicio" class="active">Inicio</a>
+      <a href="#tratamientos">Tratamientos</a>
+      <a href="#experiencias">Experiencias</a>
+      <!--<a href="#agendar">Agendar turno</a>-->
+    </nav>
+    <div class="nav-cta">
+      <a href="https://centrodeesteticadeleonorfrittelli.site.agendapro.com/ar/sucursal/436828" class="btn" tabindex="0" target="_blank">Agendar turno</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<div id="inicio" class="wrapper">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">
+        Cuidamos tu piel, tu cuerpo y tu bienestar en cada etapa de la vida
+      </h1>
+      <h3 class="hero-sub">
+        Tratamientos estéticos y terapéuticos pensados para personas mayores, con atención personalizada y segura.
+      </h3>
+      <a href="https://centrodeesteticadeleonorfrittelli.site.agendapro.com/ar/sucursal/436828" class="btn" target="_blank">Agendar turno</a>
+    </div>
+    <img class="hero-img" alt="Persona mayor recibiendo tratamiento relajante" src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=facearea&w=720&h=480&facepad=2.5">
+  </section>
+  <div class="hero-below">
+    Con el paso de los años, la piel y el cuerpo necesitan cuidados específicos. En Arwen Belleza trabajamos con técnicas seguras que mejoran la calidad de vida, la movilidad y el bienestar general.
+  </div>
+</div>
+
+<!-- TRATAMIENTOS -->
+<section id="tratamientos" class="section wrapper">
+  <h2 class="section-title">Tratamientos para vos</h2>
+  <div class="treatments-grid">
+    <div class="card">
+      <img class="card-img" alt="Rostro adulto mayor, relajado" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=facearea&w=480&h=320&facepad=2">
+      <div class="card-body">
+        <div class="card-title">Estética facial para piel madura</div>
+        <div class="card-benefit">Luminosidad y vitalidad, sin irritaciones</div>
+      </div>
+    </div>
+    <div class="card">
+      <img class="card-img" alt="Masaje corporal adulto mayor" src="https://images.pexels.com/photos/6476086/pexels-photo-6476086.jpeg?auto=compress&w=480&h=320&fit=crop">
+      <div class="card-body">
+        <div class="card-title">Tratamientos corporales</div>
+        <div class="card-benefit">Mejoramos la circulación y la tonicidad</div>
+      </div>
+    </div>
+    <div class="card">
+      <img class="card-img" alt="Manos adultas masajeando" src="https://images.pexels.com/photos/8411309/pexels-photo-8411309.jpeg?auto=compress&w=480&h=320&fit=crop">
+      <div class="card-body">
+        <div class="card-title">Técnicas manuales relajantes</div>
+        <div class="card-benefit">Reducción del estrés y alivio físico</div>
+      </div>
+    </div>
+    <div class="card">
+      <img class="card-img" alt="Pierna adulta depilada y cuidada" src="https://images.pexels.com/photos/3762872/pexels-photo-3762872.jpeg?auto=compress&w=480&h=320&fit=crop">
+      <div class="card-body">
+        <div class="card-title">Depilación definitiva piel sensible</div>
+        <div class="card-benefit">Sin molestias ni enrojecimiento</div>
+      </div>
+    </div>
+    <div class="card">
+      <img class="card-img" alt="Masaje descontracturante adulto" src="https://images.pexels.com/photos/3997987/pexels-photo-3997987.jpeg?auto=compress&w=480&h=320&fit=crop">
+      <div class="card-body">
+        <div class="card-title">Masajes relajantes y descontracturantes</div>
+        <div class="card-benefit">Alivio muscular y mejor movilidad</div>
+      </div>
+    </div>
+    <div class="card">
+      <img class="card-img" alt="Equipo estética en gabinete" src="https://images.pexels.com/photos/3757942/pexels-photo-3757942.jpeg?auto=compress&w=480&h=320&fit=crop">
+      <div class="card-body">
+        <div class="card-title">Aparatología simple y segura</div>
+        <div class="card-benefit">Luz pulsada, multicavitación y radiofrecuencia</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIÉN ES ELI -->
+<section class="eli-section wrapper" aria-label="Quién es Eli">
+  <img class="eli-img" alt="Eli - especialista en estética" src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&w=300&h=300&fit=crop">
+  <div class="eli-content">
+    <div class="eli-name">Eli · Especialista en cuidados faciales y corporales</div>
+    <div class="eli-text">
+      Más de 10 años acompañando a personas mayores y familias en su bienestar.<br>
+      Mi objetivo es que cada persona se sienta cómoda, cuidada y acompañada en cada tratamiento. 
+      Brindo atención paciente, personalizada, con vocación, calidez y respeto.<br>
+      Creo en el cuidado integral para que la belleza y la salud vayan siempre juntas.
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCIAS / TESTIMONIOS -->
+<section id="experiencias" class="testimonials-section wrapper">
+  <h2 class="testimonials-title">Experiencias reales</h2>
+  <div class="testimonials-carousel" tabindex="0" aria-label="Testimonios">
+    <div class="testimonial">
+      <div class="testimonial-text">
+        Llegué con mucha desconfianza por mi edad, pero aquí me sentí tranquila desde el primer día. Mi piel luce mejor y los masajes me ayudaron mucho con mis dolores.
+      </div>
+        <div class="testimonial-author">
+      <span class="testimonial-name">Marta L.</span>
+      <span class="testimonial-age">76 años</span>
+        </div>
+
+    </div>
+    <div class="testimonial">
+      <div class="testimonial-text">
+        Es un lugar cálido, muy limpio y seguro. Eli está siempre atenta y explica todo. Recomendé Arwen a mis amigas y todas quedaron encantadas.
+      </div>
+      <div class="testimonial-author">
+        <span class="testimonial-name">Graciela B.</span>
+        <span class="testimonial-age">69 años</span>
+      </div>
+    </div>
+    <div class="testimonial">
+      <div class="testimonial-text">
+        Mi mamá mejoró mucho su movilidad y el ánimo gracias a los tratamientos. Destaco la empatía y el respeto en cada sesión.
+      </div>
+            <div class="testimonial-author">
+
+       <span class="testimonial-name">Elvira P.</span>
+      <span class="testimonial-age">81 años</span>
+    </div>    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section class="proceso-section wrapper">
+  <h2 class="section-title">Cómo trabajamos</h2>
+  <div class="proceso-steps">
+    <div class="proceso-step">
+      <span class="proceso-number">1</span>
+      <span class="proceso-title">Reservás tu cita</span>
+      <span class="proceso-desc">Por teléfono o formulario, en el horario que prefieras.</span>
+    </div>
+
+    <div class="proceso-step">
+      <span class="proceso-number">2</span>
+      <span class="proceso-title">Definimos el tratamiento ideal</span>
+      <span class="proceso-desc">Indicamos los tratamientos adecuados para tu edad y necesidades reales.
+</span>
+    </div>
+    <div class="proceso-step">
+      <span class="proceso-number">3  </span>
+      <span class="proceso-title">Acompañamos tu bienestar</span>
+      <span class="proceso-desc">Seguimiento cercano, con orientación y tranquilidad.</span>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA EL ESPACIO -->
+<section class="gallery-section wrapper">
+  <h2 class="section-title">Nuestro espacio</h2>
+  <div class="gallery-grid">
+    <img class="gallery-img" alt="Recepción cálida y luminosa" src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80">
+    <img class="gallery-img" alt="Gabinete pulcro, ordenado" src="https://images.unsplash.com/photo-1485841938034-1e1a224b6722?auto=format&fit=crop&w=400&q=80">
+    <img class="gallery-img" alt="Ambiente cómodo, luz natural" src="https://images.unsplash.com/photo-1520770752581-a3e0adf3c5da?auto=format&fit=crop&w=400&q=80">
+    <img class="gallery-img" alt="Zona espera adaptada" src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&w=400&q=80">
+  </div>
+</section>
+
+<!-- CÓMO LLEGAR Y AGENDAR -->
+<section id="agendar" class="location-section wrapper">
+  <div class="location-details">
+    <h2 class="location-title">Cómo llegar y reservar tu turno</h2>
+    <div class="location-address"><strong>Dirección:</strong> Vera y Zarate 3131, Villa Cabrera, Córdoba</div>
+    
+    
+    <div class="location-cta">
+      <a href="https://centrodeesteticadeleonorfrittelli.site.agendapro.com/ar/sucursal/436828" class="btn" target="_blank">Agendar turno</a>
+    </div>
+  </div>
+  <div class="location-map">
+<iframe
+  title="Mapa: Arwen Belleza en Villa Cabrera"
+  width="100%"
+  height="230"
+  style="border:0"
+  loading="lazy"
+  src="https://www.openstreetmap.org/export/embed.html?
+bbox=-64.2183,-31.3818,-64.2143,-31.3788
+&layer=mapnik
+&marker=-31.380274,-64.216284">
+</iframe>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <span class="footer-brand">Arwen Belleza</span>
+  <nav class="footer-menu" aria-label="Menú pie de página">
+    <a href="#inicio">Inicio</a>
+    <a href="#tratamientos">Tratamientos</a>
+    <a href="#experiencias">Experiencias</a>
+    <a href="https://centrodeesteticadeleonorfrittelli.site.agendapro.com/ar/sucursal/436828" target="_blank" >Agendar turno</a>
+  </nav>
+  <div class="footer-copy">
+    Villa Cabrera · +10 años de experiencia · La belleza es salud
+  </div>
+</footer>

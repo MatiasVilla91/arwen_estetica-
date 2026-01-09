@@ -1,879 +1,1256 @@
+<!DOCTYPE html>
+<html lang='es'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Generar una página web completa en…</title>
+</head>
+<body>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600&display=swap');
+*{box-sizing:border-box}
+html,body{width:100%;margin:0;padding:0;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
 
-:root {
-  --color-bg: #fff;
-  --color-primary: #F9E6EF;  /* Rosa suave */
-  --color-secondary: #E2F3E8; /* Verde suave */
-  --color-accent: #db4b81; /* Rosa acentuado para botones */
-  --color-text: #232323;
-  --color-text-alt: #467155; /* Verde oscuro para matices */
-  --color-cta: #4FAC8C; /* Verde CTA */
-  --color-footer: #FAFAFA;
-  --color-border: #F2F2F2;
-  --shadow-premium: 0 6px 28px rgba(40, 34, 54, 0.09);
-  --radius-lg: 24px;
-  --radius-md: 12px;
-  --max-width: 1200px;
-  --gap-xl: 56px;
-  --gap-lg: 36px;
-  --gap-md: 24px;
-  --gap-sm: 16px;
-}
+/* Tipografías */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
-html {
-  font-size: 18px;
-  box-sizing: border-box;
+/* Variables y base */
+:root{
+  --color-bg:#ffffff;
+  --color-rosa-claro:#ffeaf4;
+  --color-rosa-soft:#fde8f1;
+  --color-rosa-borde:#f7c7dc;
+  --color-verde:#4bbf9f;
+  --color-verde-dark:#35a287;
+  --color-text:#303039;
+  --color-text-soft:#666677;
+  --shadow-soft:0 10px 30px rgba(0,0,0,0.06);
+  --radius-lg:18px;
+  --radius-md:14px;
+  --radius-pill:999px;
+  --max-width:1160px;
+  --space-h:16px;
 }
 
-*, *:before, *:after {
-  box-sizing: inherit;
+body{
+  font-family:'Montserrat',system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:var(--color-bg);
+  color:var(--color-text);
+  line-height:1.6;
+  font-size:clamp(14px,3.7vw,16px);
 }
 
-body {
-  margin: 0;
-  background: var(--color-bg);
-  color: var(--color-text);
-  font-family: 'Inter', Arial, sans-serif;
-  line-height: 1.7;
-  min-width: 100vw;
-  width: 100%;
-  font-size: 1.1rem;
+/* Layout utilitario */
+.page-wrap{
+  min-height:100vh;
+  background:linear-gradient(180deg,#fff 0%,#fff 40%,#ffeef7 100%);
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.section{
+  padding:32px var(--space-h);
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+.container{
+  max-width:var(--max-width);
+  margin:0 auto;
 }
 
-button, .btn {
-  font-family: inherit;
-  border: none;
-  outline: none;
-  padding: 0.9em 2.2em;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--color-cta), var(--color-accent));
-  color: #fff;
-  font-weight: 600;
-  font-size: 1.08em;
-  cursor: pointer;
-  box-shadow: 0 2px 18px 0 rgba(79, 172, 140, 0.10);
-  transition: background 0.2s;
-  letter-spacing: 0.01em;
-}
-button:focus-visible, .btn:focus-visible {
-  outline: 3px solid var(--color-accent);
+/* Tipografía y títulos */
+h1,h2,h3,h4{
+  margin:0 0 8px;
+  font-weight:600;
+  color:var(--color-text);
 }
 
-.btn-outline {
-  background: #fff;
-  color: var(--color-accent);
-  border: 2px solid var(--color-accent);
-  box-shadow: none;
+h1{
+  font-size:clamp(24px,6vw,40px);
+  letter-spacing:0.01em;
 }
 
-button:hover,
-.btn:hover {
-  transform: translateY(-2px);
-  background: linear-gradient(
-    90deg,
-    color-mix(in srgb, var(--color-cta) 85%, #000),
-    color-mix(in srgb, var(--color-accent) 85%, #000)
-  );
-  box-shadow:
-    0 10px 32px rgba(40, 34, 54, 0.28),
-    0 2px 6px rgba(0, 0, 0, 0.12);
+h2{
+  font-size:clamp(20px,4.5vw,30px);
+  margin-bottom:4px;
 }
 
-
-
-.btn-outline:hover {
-  background: linear-gradient(90deg, var(--color-cta), var(--color-accent));
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow:
-    0 10px 36px rgba(79, 172, 140, 0.28),
-    0 2px 8px rgba(0, 0, 0, 0.08);
+h3{
+  font-size:18px;
+  font-weight:500;
+  margin-bottom:4px;
 }
 
-
-.wrapper {
-  width: 100%;
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 var(--gap-md);
+.section-tag{
+  display:inline-flex;
+  align-items:center;
+  padding:4px 10px;
+  border-radius:999px;
+  background:rgba(245,185,211,0.28);
+  color:var(--color-text-soft);
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:0.12em;
+  margin-bottom:12px;
 }
 
-/* Navbar */
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 30;
-  background: rgba(255,255,255,0.96);
-  backdrop-filter: blur(9px);
-  width: 100%;
-  box-shadow: 0 2px 17px rgba(90,60,80,0.06);
-}
-.nav-content {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--gap-sm) var(--gap-md);
-}
-.brand {
-  font-family: 'Playfair Display', serif;
-  font-weight: 600;
-  font-size: 1.5em;
-  letter-spacing: 0.01em;
-  color: var(--color-accent);
-}
-.nav-menu {
-  display: flex;
-  gap: var(--gap-md);
-}
-.nav-menu a {
-  font-weight: 500;
-  font-size: 1em;
-  color: var(--color-text-alt);
-  padding: 0.35em 0.9em;
-  border-radius: 999px;
-  opacity: 0.92;
-  transition: background 0.2s;
-}
-.nav-menu a.active,
-.nav-menu a:hover {
-  background: var(--color-primary);
-  color: var(--color-accent);
-}
-.nav-cta {
-  margin-left: var(--gap-md);
+/* Botones */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:13px 22px;
+  border-radius:var(--radius-pill);
+  border:none;
+  cursor:pointer;
+  font-size:14px;
+  font-weight:600;
+  text-decoration:none;
+  transition:background 0.2s ease,box-shadow 0.2s ease,transform 0.08s ease, color 0.2s ease;
+  white-space:nowrap;
 }
 
-/* Hero */
-.hero {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: stretch;        /* 👈 CLAVE */
-  gap: var(--gap-xl);
-  align-items: center;
-  padding: var(--gap-xl) 0 var(--gap-md) 0;
-}
-.hero-content {
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap-md);
-  justify-content: center;
-
-}
-.hero-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.1em;
-  font-weight: 600;
-  color: var(--color-text-alt);
-  line-height: 1.17;
-  max-width: 650px;
-}
-.hero-sub {
-  font-size: 1.13em;
-  color: var(--color-text);
-  font-weight: 400;
-  margin-bottom: var(--gap-md);
-  max-width: 500px;
-}
-.hero-img {
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-premium);
-  object-fit: cover;
-  width: 100%;
-  height: 100%;                /* 👈 CLAVE */
-
-  min-height: 340px;
-}
-.hero-below {
-  margin: var(--gap-lg) auto 0 auto;   /* 👈 centra horizontalmente */
-  background: var(--color-primary);
-  border-radius: var(--radius-lg);
-  padding: var(--gap-md);
-  font-size: 1.04em;
-  color: #73364d;
-  max-width: 100% ;
-  box-shadow: 0 4px 20px rgba(241,180,201,0.11);
+.btn-primary{
+  background:var(--color-verde);
+  color:#ffffff;
+  box-shadow:0 12px 24px rgba(75,191,159,0.28);
 }
 
-/* Tratamientos - Servicios */
-.section {
-  padding: var(--gap-xl) 0;
-  width: 100%;
+.btn-primary:hover{
+  background:var(--color-verde-dark);
+  box-shadow:0 18px 32px rgba(75,191,159,0.32);
+  transform:translateY(-1px);
 }
 
-.section-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.5em;
-  font-weight: 600;
-  color: var(--color-accent);
-  margin-bottom: var(--gap-lg);
-  text-align: left;
+.btn-ghost{
+  background:rgba(255,255,255,0.85);
+  color:var(--color-text);
+  border:1px solid rgba(240,195,216,0.7);
 }
 
-.treatments-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--gap-lg);
+.btn-ghost:hover{
+  background:#ffffff;
 }
 
-.card {
-  background: #fff;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-premium);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  overflow: hidden;
-  transition: box-shadow .18s;
-  min-height: 365px;
-}
-.card:hover {
-  box-shadow: 0 10px 35px rgba(180,71,130,0.12);
-}
-.card-img {
-  width: 100%;
-  height: 170px;
-  object-fit: cover;
-  transition: transform 0.35s ease;
-
-}
-.card-body {
-  padding: var(--gap-md);
-  display: flex;
-  flex-direction: column;
-  gap: 0.65em;
-}
-.card-title {
-  font-weight: 600;
-  font-size: 1.13em;
-  color: var(--color-text-alt);
-  margin-top: 0.2em;
-}
-.card-benefit {
-  color: var(--color-accent);
-  font-size: 1em;
-  font-weight: 500;
+/* Pills pequeños */
+.chip{
+  display:inline-flex;
+  align-items:center;
+  padding:4px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.75);
+  color:var(--color-text-soft);
+  font-size:11px;
+  border:1px solid rgba(245,185,211,0.6);
 }
 
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 38px rgba(40, 34, 54, 0.12);
+/* NAVBAR STICKY */
+.navbar{
+  position:sticky;
+  top:0;
+  z-index:40;
+  background:#ffffff;
+  box-shadow:0 6px 18px rgba(0,0,0,0.04);
 }
 
-
-/* Quién es Eli */
-.eli-section {
-  background: var(--color-secondary);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-premium);
-
-  max-width: 1200px;              /* 👈 centra el bloque visual */
-  margin: var(--gap-xl) auto;     /* 👈 centrado real */
-
-  padding: var(--gap-xl);         /* 👈 padding horizontal y vertical */
-
-  display: flex;
-  align-items: center;
-  justify-content: center;        /* 👈 equilibrio visual */
-  gap: var(--gap-xl);
+.nav-inner{
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding:10px var(--space-h);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
 }
 
-.eli-img {
-  width: 175px;
-  height: 175px;
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow: 0 5px 18px rgba(120,190,169,0.13);
-  border: 4px solid #fff;
-  flex-shrink: 0;                 /* 👈 importante */
+.nav-logo{
+  font-weight:700;
+  font-size:16px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--color-text);
 }
 
-.eli-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.nav-logo span{
+  color:var(--color-verde);
 }
 
-.eli-name {
-  font-family: 'Inter',sans-serif;
-  color: #467155;
-  font-size: 1.15em;
-  font-weight: 600;
-  margin-bottom: 0.4em;
-}
-.eli-text {
-  font-size: 1.05em;
-  line-height: 1.6;
-  color: #314732;
-  max-width: 600px;
+.nav-menu{
+  display:none;
 }
 
-/* Testimonios */
-/* Testimonios */
-.testimonials-section {
-  padding: calc(var(--gap-xl) * 1.3) 0;
-  background: linear-gradient(180deg, #fbe9f0 0%, #ffffff 100%);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-premium);
-  margin-bottom: var(--gap-xl);
-    padding-left: 70px; 
+.nav-cta{
+  flex-shrink:0;
 }
 
-.testimonials-title {
-  font-family: 'Playfair Display', serif;
-  color: var(--color-accent);
-  font-size: 1.25em;
-  margin-bottom: var(--gap-lg);
+.nav-cta .btn-primary{
+  padding-inline:16px;
+  font-size:13px;
+}
+
+/* HERO */
+.hero{
+  padding:28px var(--space-h) 32px;
+}
+
+.hero-inner{
+  max-width:var(--max-width);
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+}
+
+.hero-copy{
+  background:rgba(255,250,253,0.95);
+  padding:18px 18px 20px;
+  border-radius:22px;
+  box-shadow:var(--shadow-soft);
+}
+
+.hero-copy h3{
+  font-size:15px;
+  color:var(--color-text-soft);
+  font-weight:400;
+}
+
+.hero-sub{
+  font-size:14px;
+  color:var(--color-text-soft);
+  margin-bottom:16px;
+}
+
+.hero-badges{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:16px;
+}
+
+.hero-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top:8px;
+  flex-wrap:wrap;
+}
+
+.hero-stats{
+  display:flex;
+  gap:18px;
+  margin-top:18px;
+  padding-top:10px;
+  border-top:1px dashed rgba(240,195,216,0.8);
+}
+
+.hero-stat{
+  font-size:11px;
+  color:var(--color-text-soft);
+}
+
+.hero-stat strong{
+  display:block;
+  font-size:14px;
+  color:var(--color-text);
+}
+
+.hero-media{
+  border-radius:26px;
+  overflow:hidden;
+  background:linear-gradient(135deg,#ffeaf4,#fff);
+  box-shadow:0 18px 40px rgba(0,0,0,0.12);
+  position:relative;
+}
+
+.hero-media-inner{
+  padding:12px 12px 0;
+}
+
+.hero-tag{
+  position:absolute;
+  left:16px;
+  top:14px;
+  padding:6px 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.9);
+  font-size:11px;
+  color:var(--color-text-soft);
+  box-shadow:0 12px 24px rgba(0,0,0,0.08);
+}
+
+/* Tratamientos por edad */
+.age-strip{
+  margin-top:20px;
+  padding:18px 16px;
+  border-radius:20px;
+  background:#ffffff;
+  box-shadow:0 10px 26px rgba(0,0,0,0.05);
+}
+
+.age-strip-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+.age-strip-title{
+  font-size:18px;
+  font-weight:600;
+}
+
+.age-pills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-bottom:12px;
+}
+
+.age-pill{
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid rgba(245,185,211,0.8);
+  font-size:11px;
+  color:var(--color-text-soft);
+  background:rgba(255,250,253,0.9);
+}
+
+.age-list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.age-item-title{
+  font-size:16px;
+  font-weight:600;
+  color:var(--color-text);
+}
+
+.age-item-text{
+  font-size:12px;
+  color:var(--color-text-soft);
+}
+
+/* SECCIÓN GENERICA */
+.section-header{
+  margin-bottom:18px;
+}
+
+.section-header p{
+  margin:2px 0 0;
+  font-size:14px;
+  color:var(--color-text-soft);
+}
+
+/* SERVICIOS */
+.services{
+  background:#fff;
+}
+
+.service-grids{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
   
 }
 
-/* Carrusel */
-.testimonials-carousel {
-  display: flex;
-  gap: var(--gap-lg);
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding: 4px 2px var(--gap-md);
-  padding-bottom: var(--gap-md);
-
-  
+/* Cards base */
+.card{
+  background:#ffffff;
+  border-radius:var(--radius-lg);
+  padding:16px;
+  box-shadow:var(--shadow-soft);
+  border:1px solid rgba(247,199,220,0.45);
+  transition:transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
 }
 
-.testimonials-carousel::-webkit-scrollbar {
-  height: 6px;
+.card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 14px 32px rgba(0,0,0,0.08);
+  border-color:rgba(75,191,159,0.4);
 }
 
-.testimonials-carousel::-webkit-scrollbar-thumb {
-  background: rgba(219, 75, 129, 0.25);
-  border-radius: 6px;
+.card-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:10px;
+  gap:10px;
 }
 
-/* Card */
-.testimonial {
-  flex: 0 0 320px;
-  background: #fff;
-  border-radius: var(--radius-md);
-  padding: calc(var(--gap-md) * 1.1);
-  box-shadow: 0 10px 30px rgba(40, 34, 54, 0.08);
-  scroll-snap-align: start;
-  display: flex;
-  flex-direction: column;
-  gap: 1.1em;
-  position: relative;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  
-  
+.card-title{
+  font-size:20px;
+  font-weight:600;
 }
 
-.testimonial:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 38px rgba(40, 34, 54, 0.12);
+.card-tag{
+  padding:4px 8px;
+  border-radius:999px;
+  background:rgba(75,191,159,0.06);
+  color:var(--color-verde-dark);
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:0.09em;
 }
 
-/* Comillas */
-.testimonial::before {
-  content: "“";
-  position: absolute;
-  top: 14px;
-  right: 18px;
-  font-family: 'Playfair Display', serif;
-  font-size: 3.2em;
-  color: rgba(219, 75, 129, 0.15);
-  line-height: 1;
+.card-body{
+  font-size:17px;
+  color:var(--color-text-soft);
 }
 
-/* Texto */
-.testimonial-text {
-  color: #312433;
-  font-size: 1.03em;
-  line-height: 1.55;
+.card-list{
+  margin:10px 0 0;
+  padding-left:16px;
+  font-size:15px;
+  color:var(--color-text-soft);
 }
 
-/* Autor */
-.testimonial-name {
-  font-weight: 600;
-  color: var(--color-accent);
-  font-size: 0.96em;
+.card-list li{
+  margin-bottom:4px;
 }
 
-.testimonial-age {
-  font-size: 0.88em;
-  color: #8a7a8c;
+.card-image{
+  margin-top:12px;
+  border-radius:16px;
+  overflow:hidden;
+
 }
 
 
-/* Proceso */
-.proceso-section {
-  padding: var(--gap-xl) 0;
-}
-.proceso-steps {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--gap-lg);
-}
-.proceso-step {
-  background: var(--color-secondary);
-  border-radius: var(--radius-md);
-  padding: var(--gap-md);
-  box-shadow: var(--shadow-premium);
-  font-size: 1.04em;
-  color: var(--color-text-alt);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.7em;
-}
-.proceso-number {
-  font-weight: 600;
-  background: var(--color-accent);
-  color: #fff;
-  border-radius: 999px;
-  font-size: 1em;
-  padding: 0.18em 0.85em;
-}
-.proceso-title {
-  font-weight: 600;
-  font-size: 1.06em;
-}
-.proceso-desc {
-  color: #5d7c67;
-  font-size: 0.98em;
+/* QUIÉN ES ELI */
+.eli{
+  background:linear-gradient(180deg,#ffeef7 0%,#ffffff 65%);
 }
 
-.proceso-step:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 38px rgba(40, 34, 54, 0.12);
+.eli-inner{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
 }
 
-
-/* Galería */
-.gallery-section {
-  padding: var(--gap-xl) 0 var(--gap-lg) 0;
+.eli-photo{
+  border-radius:26px;
+  overflow:hidden;
+  box-shadow:0 16px 36px rgba(0,0,0,0.12);
+  background:#fff;
 }
 
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--gap-md);
+.eli-text{
+  background:#ffffff;
+  border-radius:22px;
+  padding:16px 16px 18px;
+  box-shadow:var(--shadow-soft);
+  border:1px solid rgba(247,199,220,0.6);
 }
 
-.gallery-img {
-  width: 100%;
-  aspect-ratio: 1 / 1;        /* 👈 CUADRADO REAL */
-  object-fit: cover;
-  border-radius: var(--radius-lg);
-  box-shadow: 0 3px 10px rgba(116,163,140,0.12);
+.eli-bullets{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin-top:10px;
 }
 
-/* Como llegar */
-.location-section {
-  padding: var(--gap-xl) 0 var(--gap-md) 0;
-  display: flex;
-  gap: var(--gap-xl);
-  flex-wrap: wrap;
-  align-items: center;
-}
-.location-details {
-  flex: 1.5;
-}
-.location-title {
-  font-family: 'Playfair Display',serif;
-  font-size: 1.26em;
-  color: var(--color-accent);
-  margin-bottom: 0.4em;
-}
-.location-address {
-  color: #142d19;
-  font-size: 1.05em;
-  margin-bottom: var(--gap-sm);
-}
-.location-note {
-  font-size: 1em;
-  margin: var(--gap-sm) 0;
-  color: #5d7c67;
-}
-.location-cta {
-  margin-top: var(--gap-md);
-}
-.location-map {
-  flex: 2;
-  min-width: 260px;
-  max-width: 460px;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: 0 4px 22px rgba(145,180,156,0.13);
+.eli-bullet{
+  display:flex;
+  align-items:flex-start;
+  gap:8px;
+  font-size:13px;
+  color:var(--color-text-soft);
 }
 
-/* Footer */
-.footer {
-  background: var(--color-footer);
-  border-top: 2px solid var(--color-border);
-  padding: var(--gap-lg) 0 var(--gap-sm) 0;
-  text-align: center;
-  color: #999;
-  font-size: 0.99em;
-  letter-spacing: 0.01em;
-}
-.footer-brand {
-  font-family: 'Playfair Display',serif;
-  color: var(--color-accent);
-  font-weight: 600;
-  font-size: 1.15em;
-  display: block;
-  margin-bottom: 0.4em;
-}
-.footer-menu {
-  margin-bottom: var(--gap-sm);
-  display: flex;
-  gap: var(--gap-md);
-  justify-content: center;
-}
-.footer-menu a {
-  color: #9e54a2;
-  opacity: 0.84;
-}
-.footer-copy {
-  color: #777;
-  margin-top: 0.4em;
-  font-size: 0.96em;
+.eli-badge{
+  width:8px;
+  height:8px;
+  border-radius:999px;
+  background:var(--color-verde);
+  margin-top:4px;
 }
 
-@media (max-width: 1024px) {
+/* TESTIMONIOS */
+.testimonios{
+  background:#fff;
+}
 
-  .hero {
-    grid-template-columns: 1fr;
-    gap: var(--gap-lg);
-    text-align: left;
+.testimonios-track{
+  display:flex;
+  gap:14px;
+  overflow-x:auto;
+  padding-bottom:6px;
+  -webkit-overflow-scrolling:touch;
+  scroll-snap-type:x mandatory;
+}
+
+.testimonios-track::-webkit-scrollbar{
+  height:4px;
+}
+
+.testimonios-track::-webkit-scrollbar-thumb{
+  background:rgba(247,199,220,0.9);
+  border-radius:999px;
+}
+
+.testimonial-card{
+  min-width:78%;
+  max-width:86%;
+  scroll-snap-align:start;
+  padding:14px 14px 16px;
+  border-radius:20px;
+  background:#ffffff;
+  border:1px solid rgba(247,199,220,0.6);
+  box-shadow:var(--shadow-soft);
+}
+
+.testimonial-name{
+  font-weight:600;
+  font-size:14px;
+  margin-bottom:4px;
+}
+
+.testimonial-meta{
+  font-size:11px;
+  color:var(--color-text-soft);
+  margin-bottom:8px;
+}
+
+.testimonial-text{
+  font-size:13px;
+  color:var(--color-text-soft);
+}
+
+/* PASOS */
+.pasos{
+  background:linear-gradient(180deg,#ffeef7 0%,#ffeaf4 40%,#ffffff 100%);
+}
+
+.pasos-grid{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.paso-card{
+  border-radius:18px;
+  background:#ffffff;
+  padding:12px 14px 14px;
+  box-shadow:var(--shadow-soft);
+  border:1px solid rgba(247,199,220,0.7);
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+}
+
+.paso-num{
+  width:26px;
+  height:26px;
+  border-radius:999px;
+  border:1px solid rgba(75,191,159,0.5);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:13px;
+  font-weight:600;
+  color:var(--color-verde-dark);
+  background:rgba(75,191,159,0.06);
+  flex-shrink:0;
+}
+
+.paso-content h3{
+  font-size:14px;
+  margin-bottom:4px;
+}
+
+.paso-content p{
+  font-size:13px;
+  color:var(--color-text-soft);
+}
+
+/* GALERÍA */
+.galeria{
+  background:#fff;
+}
+
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+
+.gallery-item{
+  border-radius:16px;
+  overflow:hidden;
+  background:#fdf3f8;
+  box-shadow:0 10px 24px rgba(0,0,0,0.06);
+}
+
+/* CÓMO LLEGAR Y AGENDAR */
+.contacto{
+  background:linear-gradient(180deg,#ffffff 0%,#ffeef7 55%,#ffeaf4 100%);
+}
+
+.contact-inner{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.contact-text{
+  background:#ffffff;
+  padding:16px 16px 18px;
+  border-radius:22px;
+  box-shadow:var(--shadow-soft);
+  border:1px solid rgba(247,199,220,0.7);
+}
+
+.contact-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:12px;
+}
+
+.map-placeholder{
+  border-radius:22px;
+  border:1px dashed rgba(240,195,216,0.9);
+  padding:14px;
+  background:rgba(255,255,255,0.9);
+}
+
+.map-box{
+  border-radius:16px;
+  background:#f9f3f8;
+  height:180px;
+}
+
+/* FOOTER */
+.footer{
+  padding:18px var(--space-h) 24px;
+  background:#ffffff;
+  border-top:1px solid rgba(240,195,216,0.6);
+  font-size:12px;
+  color:var(--color-text-soft);
+}
+
+.footer-inner{
+  max-width:var(--max-width);
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.footer-top{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.footer-brand{
+  font-weight:600;
+  color:var(--color-text);
+}
+
+.footer-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.footer-bottom{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  gap:6px;
+  border-top:1px dashed rgba(240,195,216,0.7);
+  padding-top:8px;
+}
+
+/* DESKTOP ≥768px */
+@media(min-width:768px){
+  :root{
+    --space-h:24px;
   }
 
-  .hero-img {
-    max-width: 420px;
-    margin: 0 auto;
+  .section{
+    padding:42px var(--space-h);
   }
 
-  .treatments-grid,
-  .gallery-grid {
-    grid-template-columns: 1fr 1fr;
+  .nav-inner{
+    padding-inline:var(--space-h);
   }
 
-  .proceso-steps {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--gap-lg);
+  .hero{
+    padding-top:34px;
   }
 
-  .location-section {
-    flex-direction: column;
-    gap: var(--gap-lg);
+  .hero-inner{
+    flex-direction:row;
+    align-items:center;
+    gap:32px;
   }
 
-  .location-map {
-    max-width: 100%;
-  }
-}
-@media (max-width: 768px) {
-
-  .wrapper {
-    padding: 0 6vw;
+  .hero-copy{
+    flex:1.1;
+    padding:22px 22px 24px;
   }
 
-  .hero {
-    padding: var(--gap-lg) 0;
-    text-align: center;
+  .hero-media{
+    flex:1;
   }
 
-  .section {
-    padding: var(--gap-lg) 0;
+  .age-strip{
+    margin-top:26px;
+    padding:20px 18px;
   }
 
-  .treatments-grid,
-  .gallery-grid,
-  .proceso-steps {
-    grid-template-columns: 1fr;
-    gap: var(--gap-md);
+  .service-grids{
+    gap:24px;
   }
 
-  .eli-section {
-    flex-direction: column;
-    gap: var(--gap-lg);
-    text-align: center;
+  .eli-inner{
+    flex-direction:row;
+    align-items:center;
   }
 
-  .eli-text {
-    max-width: 100%;
+  .eli-photo,
+  .eli-text{
+    flex:1;
   }
 
-  .eli-img {
-    margin: 0 auto;
-  }
-}
-@media (max-width: 480px) {
-
-  .wrapper {
-    padding: 0 4vw;
+  .testimonial-card{
+    min-width:320px;
+    max-width:360px;
   }
 
-  .nav-content {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--gap-sm);
+  .pasos-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:16px;
   }
 
-  .gallery-img {
-    height: 110px;
+  .gallery-grid{
+    grid-template-columns:repeat(3,1fr);
   }
 
-  h1 {
-    font-size: 1.8rem;
+  .map-box{
+    height:230px;
   }
 
-  h2 {
-    font-size: 1.4rem;
+  .footer{
+    padding-inline:var(--space-h);
+  }
+
+  .footer-inner{
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:flex-start;
+  }
+
+  .footer-top{
+    max-width:60%;
   }
 }
 
-/* Scrollbar minimal para mayores */
-body, .testimonials-carousel {
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-accent) #f7f2f5;
-}
-::-webkit-scrollbar {
-  height: 7px;
-  width: 7px;
-  background: #f7f2f5;
-}
-::-webkit-scrollbar-thumb {
-  background: var(--color-accent);
-  border-radius: 8px;
+/* DESKTOP ≥1024px */
+@media(min-width:1024px){
+  :root{
+    --space-h:32px;
+  }
+
+  .nav-inner{
+    padding-block:14px;
+  }
+
+  .nav-menu{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    font-size:13px;
+    color:var(--color-text-soft);
+  }
+
+  .nav-menu a{
+    text-decoration:none;
+    color:inherit;
+    position:relative;
+    padding:4px 0;
+  }
+
+  .nav-menu a::after{
+    content:'';
+    position:absolute;
+    left:0;
+    bottom:-2px;
+    width:0;
+    height:2px;
+    border-radius:999px;
+    background:var(--color-verde);
+    transition:width 0.18s ease;
+  }
+
+  .nav-menu a:hover::after{
+    width:100%;
+  }
+
+  .nav-cta .btn-primary{
+    padding-inline:20px;
+  }
+
+  .hero-inner{
+    gap:40px;
+  }
+
+  .hero-copy{
+    padding:26px 26px 28px;
+  }
+
+  .age-strip{
+    display:flex;
+    flex-direction:row;
+    gap:18px;
+  }
+
+  .age-strip-main{
+    flex:1.5;
+  }
+
+  .age-list{
+    flex:1.2;
+  }
+
+  .service-grids,{
+    display:grid;
+    grid-template-columns:2.1fr 1.2fr;
+    align-items:flex-start;
+    width: 100%;
+
+  }
+
+  .pasos-grid{
+    grid-template-columns:repeat(4,minmax(0,1fr));
+  }
+
+  .contact-inner{
+    flex-direction:row;
+    align-items:flex-start;
+  }
+
+  .contact-text{
+    flex:1;
+  }
+
+  .map-placeholder{
+    flex:1.1;
+  }
+
+  .map-box{
+    height:260px;
+  }
 }
 </style>
 
-<link rel="stylesheet" href="/overrides/client.css">
-<script src="/overrides/content.js"></script>
-
-
-
-<!-- NAVBAR -->
-<nav class="navbar">
-  <div class="nav-content wrapper">
-    <span class="brand">Arwen Belleza</span>
-    <nav class="nav-menu" aria-label="Menú principal">
-      <a href="#inicio" class="active">Inicio</a>
-      <a href="#tratamientos">Tratamientos</a>
-      <a href="#experiencias">Experiencias</a>
-      <!--<a href="#agendar">Agendar turno</a>-->
-    </nav>
-    <div class="nav-cta">
-      <a href="https://centrodeesteticadeleonorfrittelli.site.agendapro.com/ar/sucursal/436828" class="btn" tabindex="0" target="_blank">Agendar turno</a>
+<div class="page-wrap">
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="nav-inner">
+      <div class="nav-logo">Arwen <span>Belleza</span></div>
+      <nav class="nav-menu">
+        <a href="#home">Home</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#clientas">Clientas</a>
+        <a href="#agendar">Agendar turno</a>
+      </nav>
+      <div class="nav-cta">
+        <a href="#agendar" class="btn btn-primary">Agendar turno</a>
+      </div>
     </div>
-  </div>
-</nav>
+  </header>
 
-<main>
-
-<div id="inicio" class="wrapper">
   <!-- HERO -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1 class="hero-title">
-        Cuidamos tu piel, tu cuerpo y tu bienestar en cada etapa de la vida
-      </h1>
-      <h3 class="hero-sub">
-        Tratamientos estéticos y terapéuticos pensados para personas mayores, con atención personalizada y segura.
-      </h3>
-      <a href="https://centrodeesteticadeleonorfrittelli.site.agendapro.com/ar/sucursal/436828" class="btn" target="_blank">Agendar turno</a>
-    </div>
-    <img class="hero-img" alt="Persona mayor recibiendo tratamiento relajante" src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=facearea&w=720&h=480&facepad=2.5">
-  </section>
-  <div class="hero-below">
-    Con el paso de los años, la piel y el cuerpo necesitan cuidados específicos. En Arwen Belleza trabajamos con técnicas seguras que mejoran la calidad de vida, la movilidad y el bienestar general.
-  </div>
-</div>
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <div class="section-tag">Centro de estética integral</div>
+          <h1>Estética y salud +60 años</h1>
+          <h3>Recuperá la luminosidad y firmeza de tu piel</h3>
+          <p class="hero-sub">
+            Con nuestro método Arwen, combinamos técnicas manuales y aparatología seleccionada para cuidar tu piel y tu cuerpo.
+          </p>
 
-<!-- TRATAMIENTOS -->
-<section id="tratamientos" class="section wrapper">
-  <h2 class="section-title">Tratamientos para vos</h2>
-  <div class="treatments-grid">
-    <div class="card">
-      <img class="card-img" alt="Rostro adulto mayor, relajado" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=facearea&w=480&h=320&facepad=2">
-      <div class="card-body">
-        <div class="card-title">Estética facial para piel madura</div>
-        <div class="card-benefit">Luminosidad y vitalidad, sin irritaciones</div>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" alt="Masaje corporal adulto mayor" src="https://images.pexels.com/photos/6476086/pexels-photo-6476086.jpeg?auto=compress&w=480&h=320&fit=crop">
-      <div class="card-body">
-        <div class="card-title">Tratamientos corporales</div>
-        <div class="card-benefit">Mejoramos la circulación y la tonicidad</div>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" alt="Manos adultas masajeando" src="https://images.pexels.com/photos/8411309/pexels-photo-8411309.jpeg?auto=compress&w=480&h=320&fit=crop">
-      <div class="card-body">
-        <div class="card-title">Técnicas manuales relajantes</div>
-        <div class="card-benefit">Reducción del estrés y alivio físico</div>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" alt="Pierna adulta depilada y cuidada" src="https://images.pexels.com/photos/3762872/pexels-photo-3762872.jpeg?auto=compress&w=480&h=320&fit=crop">
-      <div class="card-body">
-        <div class="card-title">Depilación definitiva piel sensible</div>
-        <div class="card-benefit">Sin molestias ni enrojecimiento</div>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" alt="Masaje descontracturante adulto" src="https://images.pexels.com/photos/3997987/pexels-photo-3997987.jpeg?auto=compress&w=480&h=320&fit=crop">
-      <div class="card-body">
-        <div class="card-title">Masajes relajantes y descontracturantes</div>
-        <div class="card-benefit">Alivio muscular y mejor movilidad</div>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" alt="Equipo estética en gabinete" src="https://images.pexels.com/photos/3757942/pexels-photo-3757942.jpeg?auto=compress&w=480&h=320&fit=crop">
-      <div class="card-body">
-        <div class="card-title">Aparatología simple y segura</div>
-        <div class="card-benefit">Luz pulsada, multicavitación y radiofrecuencia</div>
-      </div>
-    </div>
-  </div>
-</section>
+          <div class="hero-badges">
+            <span class="chip">Atención en Villa Cabrera</span>
+            <span class="chip">Más de 10 años de experiencia</span>
+          </div>
 
-<!-- QUIÉN ES ELI -->
-<section class="eli-section wrapper" aria-label="Quién es Eli">
-  <img class="eli-img" alt="Eli - especialista en estética" src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&w=300&h=300&fit=crop">
-  <div class="eli-content">
-    <div class="eli-name">Eli · Especialista en cuidados faciales y corporales</div>
-    <div class="eli-text">
-      Más de 10 años acompañando a personas mayores y familias en su bienestar.<br>
-      Mi objetivo es que cada persona se sienta cómoda, cuidada y acompañada en cada tratamiento. 
-      Brindo atención paciente, personalizada, con vocación, calidez y respeto.<br>
-      Creo en el cuidado integral para que la belleza y la salud vayan siempre juntas.
-    </div>
-  </div>
-</section>
+          <div class="hero-actions">
+            <a href="#agendar" class="btn btn-primary">Agendar turno</a>
+            <a href="#servicios" class="btn btn-ghost">Conocé más</a>
+          </div>
 
-<!-- EXPERIENCIAS / TESTIMONIOS -->
-<section id="experiencias" class="testimonials-section wrapper">
-  <h2 class="testimonials-title">Experiencias reales</h2>
-  <div class="testimonials-carousel" tabindex="0" aria-label="Testimonios">
-    <div class="testimonial">
-      <div class="testimonial-text">
-        Llegué con mucha desconfianza por mi edad, pero aquí me sentí tranquila desde el primer día. Mi piel luce mejor y los masajes me ayudaron mucho con mis dolores.
-      </div>
-        <div class="testimonial-author">
-      <span class="testimonial-name">Marta L.</span>
-      <span class="testimonial-age">76 años</span>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <strong>10+ años</strong>
+              cuidando pieles 
+            </div>
+            <div class="hero-stat">
+              <strong>Clientas felices</strong>
+              que vuelven mes a mes
+            </div>
+          </div>
         </div>
 
-    </div>
-    <div class="testimonial">
-      <div class="testimonial-text">
-        Es un lugar cálido, muy limpio y seguro. Eli está siempre atenta y explica todo. Recomendé Arwen a mis amigas y todas quedaron encantadas.
+        <div class="hero-media">
+          <div class="hero-tag">Espacio cálido, íntimo y profesional</div>
+          <div class="hero-media-inner">
+            <img src="https://media.istockphoto.com/id/1048243792/photo/woman-with-cucumber-slice-on-eye.jpg?s=2048x2048&w=is&k=20&c=qBBeu7drkuZpvd6WeGofxbnL9xpkP4AdpqJjaJk9cGg=" alt="Cabina de estética profesional en Arwen Belleza">
+          </div>
+        </div>
       </div>
-      <div class="testimonial-author">
-        <span class="testimonial-name">Graciela B.</span>
-        <span class="testimonial-age">69 años</span>
+
+      <!-- Tratamientos por franja etaria -->
+      <div class="container">
+        <div class="age-strip">
+          <div class="age-strip-main">
+            <div class="age-strip-header">
+              <div>
+                <div class="age-strip-title">¿Te sentís identificada con alguno de estos cambios?</div>
+                <p style="margin:0;font-size:12px;color:var(--color-text-soft);">
+                  Beneficios adaptados a las necesidades de tu piel en cada década.
+                </p>
+              </div>
+            </div>
+            <div class="age-pills">
+              <span class="age-pill">Enfoque suave y progresivo</span>
+              <span class="age-pill">Aparatología segura no invasiva</span>
+              <span class="age-pill">Resultados naturales</span>
+            </div>
+          </div>
+          <div class="age-list">
+            <div>
+              <div class="age-item-title">Sentís que tu piel cambió y ya no responde igual que antes.</div>
+              <div class="age-item-text"></br>          
+              </div>
+            
+            <div>
+              <div class="age-item-title">Te mirás al espejo y notás un aspecto cansado, aunque por dentro estés bien.</div>
+              <div class="age-item-text"> </br>
+              </div>
+            
+            <div>
+              <div class="age-item-title">Tenés hinchazón, rigidez o pesadez corporal que antes no estaban.</div>
+              <div class="age-item-text"> </br></div>
+              <div class="age-item-title">Buscás sentirte más cómoda y liviana en tu cuerpo, no “verte otra persona”.</div>
+              <div class="age-item-text"></br>            </div>
+              <div class="age-item-title">Cuidarse también es elegir tratamientos pensados para vos, hoy.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section id="servicios" class="section services">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Tratamientos</div>
+          <h2>Cuidado integral de tu piel y tu cuerpo</h2>
+          <p>Combinamos técnicas manuales y aparatología seleccionada para potenciar resultados sin perder calidez en el trato.</p>
+        </div>
+
+        <div class="service-grids">
+          <!-- Servicios principales -->
+          <div class="service-main">
+            <article class="card">
+              <div class="card-header">
+                <h3 class="card-title">Estética facial</h3>
+                <span class="card-tag">Piel saludable</span>
+              </div>
+              <div class="card-body">
+                Limpiezas profundas, tratamientos despigmentantes, hidrataciones intensivas y protocolos antiedad adaptados a tu tipo de piel.
+                <ul class="card-list">
+                  <li>Diagnóstico de piel en cada sesión.</li>
+                  <li>Planes mensuales y sesiones puntuales.</li>
+                  <li>Productos de apoyo para casa según tu rutina.</li>
+                </ul>
+              </div>
+              <div class="card-image">
+                <img src="image-placeholder.jpg" alt="Tratamiento de estética facial en camilla">
+              </div>
+            </article>
+
+            <article class="card" style="margin-top:16px;">
+              <div class="card-header">
+                <h3 class="card-title">Estética corporal</h3>
+                <span class="card-tag">Modelado consciente</span>
+              </div>
+              <div class="card-body">
+                Combinamos aparatología y técnicas manuales para mejorar textura, celulitis localizada y retención de líquidos con un enfoque realista.
+                <ul class="card-list">
+                  <li>Tratamientos modeladores y reafirmantes.</li>
+                  <li>Sesiones combinadas para potenciar resultados.</li>
+                  <li>Recomendaciones de hábitos para sostener cambios.</li>
+                </ul>
+              </div>
+              <div class="card-image">
+                <img src="image-placeholder.jpg" alt="Tratamiento de estética corporal con aparatología">
+              </div>
+            </article>
+
+            
+            <article class="card" style="margin-top:16px;">
+              <div class="card-header">
+                <h3 class="card-title">Masajes relajantes y terapéuticos</h3>
+                <span class="card-tag">Bienestar</span>
+              </div>
+              <div class="card-body">
+                Masajes relajantes, modeladores y descontracturantes para aliviar tensiones y reconectar con tu cuerpo.
+                <ul class="card-list">
+                  <li>Sesiones focalizadas según tu necesidad.</li>
+                  <li>Ambiente cálido, música suave y aromaterapia.</li>
+                  <li>Protocolos combinados con otras terapias corporales.</li>
+                </ul>
+              </div>
+              <div class="card-image">
+                <img src="image-placeholder.jpg" alt="Masaje relajante en camilla">
+              </div>
+            </article>
+          
+
+          <!-- Aparatología -->
+          
+            <article class="card" style="margin-top:16px;" >
+              <div class="card-header">
+                <h3 class="card-title">Aparatología seleccionada</h3>
+                <span class="card-tag">Tecnología aliada</span>
+              </div>
+              <div class="card-body">
+                Diseñamos cada sesión integrando equipos de alta eficacia con maniobras manuales para lograr cambios visibles y respetuosos con tu cuerpo.
+                <ul class="card-list">
+                  <li><strong>Luz pulsada:</strong> fotodepilación y tratamientos de manchas y rojeces.</li>
+                  <li><strong>Multicavitación:</strong> reducción de adiposidad localizada y mejora del contorno.</li>
+                  <li><strong>Radiofrecuencia:</strong> firmeza, textura y estimulación de colágeno.</li>
+                </ul>
+              </div>
+              <div class="card-image">
+                <img src="image-placeholder.jpg" alt="Equipos de aparatología estética en el gabinete">
+              </div>
+            </article>
+          </div>
+        </div>
+        </div>
+     
+    </section>
+
+    <!-- QUIÉN ES ELI -->
+    <section class="section eli">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Quién te acompaña</div>
+          <h2>Conocé a Eli</h2>
+          <p>El corazón detrás de Arwen Belleza: escucha activa, calidez y formación constante al servicio de tu bienestar.</p>
+        </div>
+
+        <div class="eli-inner">
+          <div class="eli-photo">
+            <img src="https://media.istockphoto.com/id/1289220585/photo/woman-applying-moisturiser-on-face-during-morning-routine.jpg?s=2048x2048&w=is&k=20&c=TxqENnEeAApAKUxyBmyUGkN9AyUn7_TZ0G2v35XM9_8=" alt="Eli, profesional de Arwen Belleza en su gabinete">
+          </div>
+          <div class="eli-text">
+            <h3>Más que tratamientos, acompañamiento</h3>
+            <p style="font-size:14px;color:var(--color-text-soft);margin-bottom:8px;">
+              Soy Eli, esteticista con más de 10 años acompañando a mujeres en Villa Cabrera a reconciliarse con su imagen desde un lugar amoroso y realista.
+            </p>
+            <div class="eli-bullets">
+              <div class="eli-bullet">
+                <span class="eli-badge"></span>
+                <span>Más de 10 años en Villa Cabrera, construyendo vínculos de confianza y seguimiento a largo plazo.</span>
+              </div>
+              <div class="eli-bullet">
+                <span class="eli-badge"></span>
+                <span>Especialista en cuidados faciales y corporales, con formación continua en aparatología y dermocosmética.</span>
+              </div>
+              <div class="eli-bullet">
+                <span class="eli-badge"></span>
+                <span>Amante del baile y las artes: creo en el movimiento y la creatividad como parte del bienestar integral.</span>
+              </div>
+            </div>
+            <p style="font-size:13px;color:var(--color-text-soft);margin-top:10px;">
+              Cada consulta comienza escuchando tu historia. A partir de ahí diseñamos juntas un plan que respete tu tiempo, tu presupuesto y tu forma única de habitar tu cuerpo.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIOS -->
+    <section id="clientas" class="section testimonios">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Clientas reales</div>
+          <h2>Lo que dicen de la experiencia</h2>
+          <p>Testimonios de mujeres que eligen volver, no solo por los resultados, sino por cómo se sienten en cada visita.</p>
+        </div>
+
+        <div class="testimonios-track">
+          <article class="testimonial-card">
+            <div class="testimonial-name">María, 34 años</div>
+            <div class="testimonial-meta">Tratamientos faciales y depilación definitiva</div>
+            <div class="testimonial-text">
+              Sentí cambios reales en mi piel y, sobre todo, en cómo la miro. Eli explica cada paso y adapta todo a lo que yo necesito y puedo sostener.
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <div class="testimonial-name">Luciana, 41 años</div>
+            <div class="testimonial-meta">Estética corporal y masajes</div>
+            <div class="testimonial-text">
+              Encontré un espacio donde relajar de verdad. Los masajes y los tratamientos corporales me ayudaron con dolores y con mi autoestima.
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <div class="testimonial-name">Valeria, 27 años</div>
+            <div class="testimonial-meta">Limpieza facial y rutina en casa</div>
+            <div class="testimonial-text">
+              Llegué con la piel muy sensible y miedo a probar cosas nuevas. Hoy tengo una rutina simple y un lugar al que vuelvo cuando necesito resetear mi piel.
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PASOS PARA LOGRAR RESULTADOS -->
+    <section class="section pasos">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Tu recorrido</div>
+          <h2>Pasos claros para ver resultados</h2>
+          <p>Un proceso sencillo, acompañado de cerca, para que no te pierdas en opciones y puedas disfrutar el camino.</p>
+        </div>
+
+        <div class="pasos-grid">
+          <article class="paso-card">
+            <div class="paso-num">1</div>
+            <div class="paso-content">
+              <h3>Agendar turno</h3>
+              <p>Elegís día y horario según tu disponibilidad. Podés escribirnos para definir qué tipo de sesión es mejor para comenzar.</p>
+            </div>
+          </article>
+
+          <article class="paso-card">
+            <div class="paso-num">2</div>
+            <div class="paso-content">
+              <h3>Evaluación personalizada</h3>
+              <p>En la primera visita revisamos tu historia, hábitos y objetivos para diseñar un plan realista, sin promesas exageradas.</p>
+            </div>
+          </article>
+
+          <article class="paso-card">
+            <div class="paso-num">3</div>
+            <div class="paso-content">
+              <h3>Tratamiento adecuado</h3>
+              <p>Combinamos técnicas manuales, aparatología y productos de apoyo según tu necesidad, etapa de la vida y presupuesto.</p>
+            </div>
+          </article>
+
+          <article class="paso-card">
+            <div class="paso-num">4</div>
+            <div class="paso-content">
+              <h3>Seguimiento</h3>
+              <p>Ajustamos la frecuencia, intensificamos o suavizamos según la respuesta de tu piel y cómo te vas sintiendo.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERÍA DEL LOCAL -->
+    <section class="section galeria">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Tu espacio</div>
+          <h2>Galería del local</h2>
+          <p>Un ambiente íntimo y luminoso, pensado para que cada sesión sea un momento de pausa en tu rutina diaria.</p>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="image-placeholder.jpg" alt="Recepción del centro de estética Arwen Belleza">
+          </div>
+          <div class="gallery-item">
+            <img src="image-placeholder.jpg" alt="Camilla preparada en cabina de tratamientos">
+          </div>
+          <div class="gallery-item">
+            <img src="image-placeholder.jpg" alt="Detalle de productos de cuidado facial en estantería">
+          </div>
+          <div class="gallery-item">
+            <img src="image-placeholder.jpg" alt="Zona de aparatología estética">
+          </div>
+          <div class="gallery-item">
+            <img src="image-placeholder.jpg" alt="Iluminación cálida del gabinete">
+          </div>
+          <div class="gallery-item">
+            <img src="image-placeholder.jpg" alt="Rincón de espera con sillón cómodo">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CÓMO LLEGAR Y AGENDAR -->
+    <section id="agendar" class="section contacto">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Agenda tu momento</div>
+          <h2>Cómo llegar y agendar tu turno</h2>
+          <p>Estamos en Villa Cabrera, en una ubicación cómoda y accesible, cerca de arterias principales y líneas de transporte.</p>
+        </div>
+
+        <div class="contact-inner">
+          <div class="contact-text">
+            <h3>Coordinemos tu próxima visita</h3>
+            <p style="font-size:14px;color:var(--color-text-soft);margin-bottom:8px;">
+              Escribinos para elegir el tratamiento ideal para tu primera sesión. Si no sabés por dónde empezar, te guiamos según tu objetivo principal.
+            </p>
+            <ul class="card-list" style="margin-top:8px;">
+              <li>Zona: Villa Cabrera, Córdoba.</li>
+              <li>Turnos con reserva previa.</li>
+              <li>Horarios flexibles según la franja horaria que necesitás.</li>
+            </ul>
+            <div class="contact-actions">
+              <a href="#agendar" class="btn btn-primary">Agendar turno</a>
+              <span class="chip">Coordinación por mensaje o llamada</span>
+            </div>
+          </div>
+
+          <div class="map-placeholder">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+              <span style="font-size:13px;font-weight:600;color:var(--color-text);">Mapa de referencia</span>
+              <span style="font-size:11px;color:var(--color-text-soft);">Aquí va tu mapa embebido</span>
+            </div>
+            <div class="map-box"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">Arwen Belleza</div>
+        <div>Centro de estética integral en Villa Cabrera.</div>
+        <div class="footer-meta">
+          <span>Atención con turno previo</span>
+          <span>|</span>
+          <span>Cuidado facial y corporal</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© Arwen Belleza. Todos los derechos reservados.</span>
+        <span>Diseño listo para personalizar.</span>
       </div>
     </div>
-    <div class="testimonial">
-      <div class="testimonial-text">
-        Mi mamá mejoró mucho su movilidad y el ánimo gracias a los tratamientos. Destaco la empatía y el respeto en cada sesión.
-      </div>
-            <div class="testimonial-author">
-
-       <span class="testimonial-name">Elvira P.</span>
-      <span class="testimonial-age">81 años</span>
-    </div>    </div>
-  </div>
-</section>
-
-<!-- PROCESO -->
-<section class="proceso-section wrapper">
-  <h2 class="section-title">Cómo trabajamos</h2>
-  <div class="proceso-steps">
-    <div class="proceso-step">
-      <span class="proceso-number">1</span>
-      <span class="proceso-title">Reservás tu cita</span>
-      <span class="proceso-desc">Por teléfono o formulario, en el horario que prefieras.</span>
-    </div>
-
-    <div class="proceso-step">
-      <span class="proceso-number">2</span>
-      <span class="proceso-title">Definimos el tratamiento ideal</span>
-      <span class="proceso-desc">Indicamos los tratamientos adecuados para tu edad y necesidades reales.
-</span>
-    </div>
-    <div class="proceso-step">
-      <span class="proceso-number">3  </span>
-      <span class="proceso-title">Acompañamos tu bienestar</span>
-      <span class="proceso-desc">Seguimiento cercano, con orientación y tranquilidad.</span>
-    </div>
-  </div>
-</section>
-
-<!-- GALERÍA EL ESPACIO -->
-<section class="gallery-section wrapper">
-  <h2 class="section-title">Nuestro espacio</h2>
-  <div class="gallery-grid">
-    <img class="gallery-img" alt="Recepción cálida y luminosa" src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80">
-    <img class="gallery-img" alt="Gabinete pulcro, ordenado" src="https://images.unsplash.com/photo-1485841938034-1e1a224b6722?auto=format&fit=crop&w=400&q=80">
-    <img class="gallery-img" alt="Ambiente cómodo, luz natural" src="https://images.unsplash.com/photo-1520770752581-a3e0adf3c5da?auto=format&fit=crop&w=400&q=80">
-    <img class="gallery-img" alt="Zona espera adaptada" src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&w=400&q=80">
-  </div>
-</section>
-
-<!-- CÓMO LLEGAR Y AGENDAR -->
-<section id="agendar" class="location-section wrapper">
-  <div class="location-details">
-    <h2 class="location-title">Cómo llegar y reservar tu turno</h2>
-    <div class="location-address"><strong>Dirección:</strong> Vera y Zarate 3131, Villa Cabrera, Córdoba</div>
-    
-    
-    <div class="location-cta">
-      <a href="https://centrodeesteticadeleonorfrittelli.site.agendapro.com/ar/sucursal/436828" class="btn" target="_blank">Agendar turno</a>
-    </div>
-  </div>
-  <div class="location-map">
-<iframe
-  title="Mapa: Arwen Belleza en Villa Cabrera"
-  width="100%"
-  height="230"
-  style="border:0"
-  loading="lazy"
-  src="https://www.openstreetmap.org/export/embed.html?
-bbox=-64.2183,-31.3818,-64.2143,-31.3788
-&layer=mapnik
-&marker=-31.380274,-64.216284">
-</iframe>
-  </div>
-</section>
-
-</main>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <span class="footer-brand">Arwen Belleza</span>
-  <nav class="footer-menu" aria-label="Menú pie de página">
-    <a href="#inicio">Inicio</a>
-    <a href="#tratamientos">Tratamientos</a>
-    <a href="#experiencias">Experiencias</a>
-    <a href="https://centrodeesteticadeleonorfrittelli.site.agendapro.com/ar/sucursal/436828" target="_blank" >Agendar turno</a>
-  </nav>
-  <div class="footer-copy">
-    Villa Cabrera · +10 años de experiencia · La belleza es salud
-  </div>
-</footer>
+  </footer>
+</div>
+</body>
+</html>
