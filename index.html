@@ -409,12 +409,24 @@ h3{
   margin-bottom:4px;
 }
 
-.card-image{
-  margin-top:12px;
-  border-radius:16px;
-  overflow:hidden;
+.card-image {
+  margin-top: 12px;
+  border-radius: 16px;
+  overflow: hidden;
+
+  width: 100%;
+  height: 310px;   /* 👉 ESTE es el control real del tamaño */
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  /* 👉 recorta sin deformar */
+  display: block;
+    object-position: center 65%;   /* 👈 baja el encuadre */
 
 }
+
 
 
 /* QUIÉN ES ELI */
@@ -433,6 +445,8 @@ h3{
   overflow:hidden;
   box-shadow:0 16px 36px rgba(0,0,0,0.12);
   background:#fff;
+  width: 100%;      /* 🔑 en mobile ocupa todo */
+  max-width: 100%;  /* 🔑 no la limites */
 }
 
 .eli-text{
@@ -711,9 +725,14 @@ h3{
     align-items:center;
   }
 
-  .eli-photo,
+  .eli-photo{
+      max-width: 22%;  
+
+  }
   .eli-text{
     flex:1;
+    
+      
   }
 
   .testimonial-card{
@@ -860,8 +879,8 @@ h3{
         <a href="#agendar">Agendar turno</a>
       </nav>
       <div class="nav-cta">
-        <a href="#agendar" class="btn btn-primary">Agendar turno</a>
-      </div>
+    <a href="https://wa.me/5493516352020" class="btn btn-primary" target="_blank">Agendar turno</a>     
+ </div>
     </div>
   </header>
 
@@ -883,8 +902,8 @@ h3{
           </div> -->
 
           <div class="hero-actions">
-            <a href="#agendar" class="btn btn-primary">Agendar turno</a>
-            <a href="#servicios" class="btn btn-ghost">Conocé más</a>
+          <a href="https://wa.me/5493516352020" class="btn btn-primary" target="_blank">Agendar turno</a>
+          <!--  <a href="#servicios" class="btn btn-ghost">Conocé más</a>-->
           </div>
 
           <!--<div class="hero-stats">
@@ -902,7 +921,7 @@ h3{
         <div class="hero-media">
           <div class="hero-tag">Espacio cálido, íntimo y profesional</div>
           <div class="hero-media-inner">
-            <img src="https://media.istockphoto.com/id/1048243792/photo/woman-with-cucumber-slice-on-eye.jpg?s=2048x2048&w=is&k=20&c=qBBeu7drkuZpvd6WeGofxbnL9xpkP4AdpqJjaJk9cGg=" alt="Cabina de estética profesional en Arwen Belleza">
+            <img src="https://res.cloudinary.com/dlppjyxmb/image/upload/v1769045455/mujer_oz4nm0.png" alt="Cabina de estética profesional en Arwen Belleza">
           </div>
         </div>
       </div>
@@ -975,7 +994,7 @@ h3{
                 </ul>
               </div>
               <div class="card-image">
-                <img src="image-placeholder.jpg" alt="Tratamiento de estética facial en camilla">
+                <img src="https://res.cloudinary.com/dlppjyxmb/image/upload/v1769045818/c75a5bc9-aaf5-47bb-a6cc-266b2cfd7648_gymcwe.png" alt="Tratamiento de estética facial en camilla">
               </div>
             </article>
 
@@ -993,7 +1012,7 @@ h3{
                 </ul>
               </div>
               <div class="card-image">
-                <img src="image-placeholder.jpg" alt="Tratamiento de estética corporal con aparatología">
+                <img src="https://res.cloudinary.com/daft68ubk/image/upload/v1767974730/WhatsApp_Image_2026-01-09_at_11.52.20_AM_rxp9hz.jpg" alt="Tratamiento de estética corporal con aparatología">
               </div>
             </article>
 
@@ -1012,7 +1031,7 @@ h3{
                 </ul>
               </div>
               <div class="card-image">
-                <img src="image-placeholder.jpg" alt="Masaje relajante en camilla">
+                <img src="https://res.cloudinary.com/daft68ubk/image/upload/v1769097686/masajes_ryewof.png" alt="Masaje relajante en camilla">
               </div>
             </article>
           
@@ -1033,7 +1052,7 @@ h3{
                 </ul>
               </div>
               <div class="card-image">
-                <img src="https://res.cloudinary.com/daft68ubk/image/upload/v1767974730/WhatsApp_Image_2026-01-09_at_11.52.20_AM_rxp9hz.jpg" alt="Equipos de aparatología estética en el gabinete">
+                <img src="https://res.cloudinary.com/dlppjyxmb/image/upload/v1769045096/4_spivvo.jpg" alt="Equipos de aparatología estética en el gabinete">
               </div>
             </article>
           </div>
@@ -1053,7 +1072,7 @@ h3{
 
         <div class="eli-inner">
           <div class="eli-photo">
-            <img src="https://media.istockphoto.com/id/1289220585/photo/woman-applying-moisturiser-on-face-during-morning-routine.jpg?s=2048x2048&w=is&k=20&c=TxqENnEeAApAKUxyBmyUGkN9AyUn7_TZ0G2v35XM9_8=" alt="Eli, profesional de Arwen Belleza en su gabinete">
+            <img src="https://res.cloudinary.com/dlppjyxmb/image/upload/v1769047013/eli_vuxy1d.jpg" alt="Eli, profesional de Arwen Belleza en su gabinete">
           </div>
           <div class="eli-text">
             <h3>Más que tratamientos, acompañamiento</h3>
@@ -1093,29 +1112,27 @@ h3{
 
         <div class="testimonios-track">
           <article class="testimonial-card">
-            <div class="testimonial-name">Victoria</div>
+            <div class="testimonial-name">Victoria, 47 años</div>
             <div class="testimonial-meta">Estética Corporal</div>
             <div class="testimonial-text">
-              Estoy tan agradecida a Arwen por ser mi bastión en uno de los momentos más importantes de mi vida. En 2013/2014, luego de mi cirugía bariátrica y en un proceso de descenso de unos 92 kgs de peso, diferentes tratamientos que recibí, con aparatología y tecnología adecuadas, con sesiones personalizadas y a mi medida; mi cambio físico y emocional fue posible en un marco saludable y exitoso. 
-
-
-Mi desarrollo fué acompañado con clases de gimnasia, terapias de piel en todo el cuerpo, rostro y pelo, un multi-enfoque adecuado a los cambios y consecuencias que estas cirugías conllevan y que, al día de hoy, en mi post-menopausia, me permiten transcurrirla   mejor.
+            Estoy tan agradecida a Arwen por ser mi bastión en uno de los momentos más importantes de mi vida. En 2013/2014, luego de mi cirugía bariátrica y en un proceso de descenso de unos 92 kgs de peso, diferentes tratamientos que recibí, con aparatología y tecnología adecuadas, con sesiones personalizadas y a mi medida; mi cambio físico y emocional fue posible en un marco saludable y exitoso. 
+            Mi desarrollo fué acompañado con clases de gimnasia, terapias de piel en todo el cuerpo, rostro y pelo, un multi-enfoque adecuado a los cambios y consecuencias que estas cirugías conllevan y que, al día de hoy, en mi post-menopausia, me permiten transcurrirla   mejor.
             </div>
           </article>
 
           <article class="testimonial-card">
-            <div class="testimonial-name">Luciana, 41 años</div>
+            <div class="testimonial-name">Susana, 70 años</div>
             <div class="testimonial-meta">Estética corporal y masajes</div>
             <div class="testimonial-text">
-              Encontré un espacio donde relajar de verdad. Los masajes y los tratamientos corporales me ayudaron con dolores y con mi autoestima.
+             Concurro al Gabinete Arwen desde octubre del año 2022 en forma ininterrumpida hasta la fecha actual tres veces por semana a sesiones de masajes manuales y con electrodos en abdomen, cintura, piernas (en los muslos) y este trabajo efectuado por Eli es excelente con una eficacia del ciento por ciento(100%) ya que he reducido muchos centímetros en cintura abdomen y en las piernas en el muso superior de las dos piernas.
             </div>
           </article>
 
           <article class="testimonial-card">
-            <div class="testimonial-name">Valeria, 27 años</div>
-            <div class="testimonial-meta">Limpieza facial y rutina en casa</div>
+            <div class="testimonial-name">Lucrecia, 45 años</div>
+            <div class="testimonial-meta">Tratamiento corporal</div>
             <div class="testimonial-text">
-              Llegué con la piel muy sensible y miedo a probar cosas nuevas. Hoy tengo una rutina simple y un lugar al que vuelvo cuando necesito resetear mi piel.
+            Hola Nori, quería agradecerte por la atención que me diste,  estoy feliz con la depi definitiva y los tratamientos corporales, Sos una genia y buenísimas la crema para las arañitas! Muchas gracias por tu calidez, hermoso el lugar 🫶🏼🥰  
             </div>
           </article>
         </div>
@@ -1167,7 +1184,7 @@ Mi desarrollo fué acompañado con clases de gimnasia, terapias de piel en todo 
       </div>
     </section>
 
-    <!-- GALERÍA DEL LOCAL -->
+    <!-- GALERÍA DEL LOCAL
     <section class="section galeria">
       <div class="container">
         <div class="section-header">
@@ -1197,7 +1214,7 @@ Mi desarrollo fué acompañado con clases de gimnasia, terapias de piel en todo 
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- CÓMO LLEGAR Y AGENDAR -->
     <section id="agendar" class="section contacto">
@@ -1220,7 +1237,7 @@ Mi desarrollo fué acompañado con clases de gimnasia, terapias de piel en todo 
               <li>Horarios flexibles según la franja horaria que necesitás.</li>
             </ul>
             <div class="contact-actions">
-              <a href="#agendar" class="btn btn-primary">Agendar turno</a>
+              <a href="https://wa.me/5493516352020" class="btn btn-primary" target="_blank">Agendar turno</a>
               <span class="chip">Coordinación por mensaje o llamada</span>
             </div>
           </div>
